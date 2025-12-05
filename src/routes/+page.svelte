@@ -87,9 +87,9 @@
 
 <div class="space-y-8">
 	<!-- Page Header -->
-	<div>
-		<h1 class="text-4xl font-display font-bold mb-2">System Overview</h1>
-		<p class="text-forge-steel">Real-time monitoring of all Forge services</p>
+	<div class="fc-hero-section">
+		<h1 class="text-4xl font-display font-bold mb-2 relative z-10">System Overview</h1>
+		<p class="text-forge-steel relative z-10">Real-time monitoring of all Forge services</p>
 	</div>
 
 	{#if error}
@@ -114,7 +114,7 @@
 		<!-- Service Health Cards -->
 		<div class="grid grid-cols-4 gap-6">
 			<!-- DataForge -->
-			<div class="kpi-card dataforge">
+			<div class="kpi-card dataforge fc-service-card fc-service-card--dataforge">
 				<div class="flex items-center justify-between mb-4">
 					<h3 class="text-xl font-semibold text-dataforge">DataForge</h3>
 					<span class="status-badge {getStatusClass(health.dataforge_status)}">
@@ -126,17 +126,14 @@
 						<span class="text-forge-steel">Uptime</span>
 						<span class="font-mono">{formatUptime(health.dataforge_uptime)}</span>
 					</div>
-					<div class="w-full bg-forge-steel/20 rounded-full h-2">
-						<div
-							class="bg-dataforge h-2 rounded-full transition-all duration-300"
-							style="width: {health.dataforge_uptime}%"
-						></div>
+					<div class="fc-progress-track fc-progress--dataforge">
+						<div class="fc-progress-value" style="width: {health.dataforge_uptime}%"></div>
 					</div>
 				</div>
 			</div>
 
 			<!-- NeuroForge -->
-			<div class="kpi-card neuroforge">
+			<div class="kpi-card neuroforge fc-service-card fc-service-card--neuroforge">
 				<div class="flex items-center justify-between mb-4">
 					<h3 class="text-xl font-semibold text-neuroforge">NeuroForge</h3>
 					<span class="status-badge {getStatusClass(health.neuroforge_status)}">
@@ -148,17 +145,14 @@
 						<span class="text-forge-steel">Uptime</span>
 						<span class="font-mono">{formatUptime(health.neuroforge_uptime)}</span>
 					</div>
-					<div class="w-full bg-forge-steel/20 rounded-full h-2">
-						<div
-							class="bg-neuroforge h-2 rounded-full transition-all duration-300"
-							style="width: {health.neuroforge_uptime}%"
-						></div>
+					<div class="fc-progress-track fc-progress--neuroforge">
+						<div class="fc-progress-value" style="width: {health.neuroforge_uptime}%"></div>
 					</div>
 				</div>
 			</div>
 
 			<!-- ForgeAgents -->
-			<div class="kpi-card agents">
+			<div class="kpi-card agents fc-service-card fc-service-card--agents fc-sparks">
 				<div class="flex items-center justify-between mb-4">
 					<h3 class="text-xl font-semibold text-agents">ForgeAgents</h3>
 					<span class="status-badge {getStatusClass(health.forgeagents_status)}">
@@ -170,17 +164,14 @@
 						<span class="text-forge-steel">Uptime</span>
 						<span class="font-mono">{formatUptime(health.forgeagents_uptime)}</span>
 					</div>
-					<div class="w-full bg-forge-steel/20 rounded-full h-2">
-						<div
-							class="bg-agents h-2 rounded-full transition-all duration-300"
-							style="width: {health.forgeagents_uptime}%"
-						></div>
+					<div class="fc-progress-track fc-progress--agents">
+						<div class="fc-progress-value" style="width: {health.forgeagents_uptime}%"></div>
 					</div>
 				</div>
 			</div>
 
 			<!-- Rake -->
-			<div class="kpi-card rake">
+			<div class="kpi-card rake fc-service-card fc-service-card--rake">
 				<div class="flex items-center justify-between mb-4">
 					<h3 class="text-xl font-semibold text-rake">Rake</h3>
 					<span class="status-badge {getStatusClass(health.rake_status)}">
@@ -192,11 +183,8 @@
 						<span class="text-forge-steel">Uptime</span>
 						<span class="font-mono">{formatUptime(health.rake_uptime)}</span>
 					</div>
-					<div class="w-full bg-forge-steel/20 rounded-full h-2">
-						<div
-							class="bg-rake h-2 rounded-full transition-all duration-300"
-							style="width: {health.rake_uptime}%"
-						></div>
+					<div class="fc-progress-track fc-progress--rake">
+						<div class="fc-progress-value" style="width: {health.rake_uptime}%"></div>
 					</div>
 				</div>
 			</div>
@@ -233,6 +221,7 @@
 						Pipeline status, ingestion metrics, and data flow monitoring
 					</p>
 				</a>
+			</div>
 		</div>
 
 		<!-- Recent Events -->
@@ -242,9 +231,9 @@
 				{#if recentEvents.length === 0}
 					<p class="text-forge-steel text-center py-8">No events yet</p>
 				{:else}
-					<div class="space-y-2">
+					<div class="space-y-2 fc-events">
 						{#each recentEvents as event}
-							<div class="flex items-center justify-between py-2 border-b border-forge-steel/30 last:border-0">
+							<div class="fc-event-row fc-row-hoverable flex items-center justify-between py-2 border-b border-forge-steel/30 last:border-0">
 								<div class="flex items-center space-x-4">
 									<span class="w-2 h-2 rounded-full bg-{getServiceColor(event.service)}"></span>
 									<span class="font-mono text-sm text-{getServiceColor(event.service)}">
