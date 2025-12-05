@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="src-tauri/icons/Forge Command.png" alt="Forge Command Logo" width="400" />
+</p>
+
 # ForgeCommand - Telemetry Dashboard 📊
 
 <p align="center">
